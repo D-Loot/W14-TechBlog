@@ -1,0 +1,50 @@
+// 10 Import from sequelize and /config/connection
+const { Model, DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
+
+// 11 Create Post model
+class Post extends Model {}
+
+// 12 Initialize Post (See ./Comment.js) (also see W13-E-CommerceBackEnd/models/Product.js Tag.js ProductTag.js)
+Post.init(
+  {
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    description: {
+      type: DataTypes.STRING,
+    },
+    date_created: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW,
+    },
+    needed_funding: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'user',
+        key: 'id',
+      },
+    },
+  },
+  {
+    sequelize,
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true,
+    modelName: 'post',
+  }
+);
+
+module.exports = Post;
