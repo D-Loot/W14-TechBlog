@@ -2,36 +2,24 @@ const { Post } = require('../models');
 
 const postData = [
 // TODO: UPDATE
-  // {
-  //   product_name: 'Plain T-Shirt',
-  //   price: 14.99,
-  //   stock: 14,
-  //   category_id: 1,
-  // },
-  // {
-  //   product_name: 'Running Sneakers',
-  //   price: 90.0,
-  //   stock: 25,
-  //   category_id: 5,
-  // },
-  // {
-  //   product_name: 'Branded Baseball Hat',
-  //   price: 22.99,
-  //   stock: 12,
-  //   category_id: 4,
-  // },
-  // {
-  //   product_name: 'Top 40 Music Compilation Vinyl Record',
-  //   price: 12.99,
-  //   stock: 50,
-  //   category_id: 3,
-  // },
-  // {
-  //   product_name: 'Cargo Shorts',
-  //   price: 29.99,
-  //   stock: 22,
-  //   category_id: 2,
-  // },
+{
+  title: 'Javascript Post',
+  description: "Here is the post on JavaScript by Sal",
+  date_created: "12/01/2020",
+  user_id: 1,
+},
+{
+  title: 'HTML Post',
+  description: "Here is the post on HTML by Lernantino",
+  date_created: "12/02/2020",
+  user_id: 2,
+},
+{
+  title: 'CSS Post',
+  description: "Here is the post on CSS by Amiko",
+  date_created: "12/03/2021",
+  user_id: 3,
+},
 ];
 
 const seedPosts = () => Post.bulkCreate(postData);
