@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Post, User, Comment } = require('../models');
-const withAuthority = require('../utils/auth');
+const withAuth = require('../utils/auth');
 
 // TODO: Create all hyper links within the router files!!!
 
@@ -64,7 +64,8 @@ router.get('/post/:id', async (req, res) => {
         },
         {
           model: Comment,
-          attributes: ['title',"description"],
+          attributes: ['title',"description","date_created"],
+          include:[{model: User, attributes:["name"]}],
         },
       ],
     });
@@ -81,7 +82,7 @@ router.get('/post/:id', async (req, res) => {
 });
 
 // Use withAuth middleware to prevent access to route
-router.get('/dashboard', withAuthority, async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {

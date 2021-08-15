@@ -5,33 +5,33 @@ const { Post } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // ------------------------------------------------------------------
-// router.get('/:id', async (req, res) => {
-//   console.log("Comment by ID")
-//   try {
-//     const commentData = await Post.findByPk(req.params.id, {
-//       include: [
-//         {
-//           model: User,
-//           attributes: ['name'],
-//         },
-//         {
-//           model: Comment,
-//           attributes: ['title'],
-//         },
-//       ],
-//     });
-// console.log(commentData);
+router.get('/:id', async (req, res) => {
+  console.log("Comment by ID")
+  try {
+    const commentData = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['name'],
+        },
+        {
+          model: Comment,
+          attributes: ['title'],
+        },
+      ],
+    });
+console.log(commentData);
 
-//     const comments = commentData.get({ plain: true });
+    const comments = commentData.get({ plain: true });
 
-//     res.render('post', {
-//       ...comment,
-//       logged_in: req.session.logged_in
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
+    res.render('post', {
+      ...comment,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 // ------------------------------------------------------------------
 
