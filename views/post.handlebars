@@ -12,7 +12,7 @@
     <div class="row mb-2">
       <div class="col-md-8">
         {{comment.title}}
-        <p>Created by STUFF on </p>
+        <p>Created by {{comment.user.name}} on {{format_date comment.date_created}}</p>
       </div>
       <p>{{comment.description}}</p>
     </div>
