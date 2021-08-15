@@ -7,9 +7,17 @@ User.hasMany(Post, {
   onDelete: 'CASCADE'
 });
 
+Post.belongsTo(User, {
+  foreignKey: 'user_id'
+});
+
 User.hasMany(Comment, {
   foreignKey: 'user_id',
   onDelete: 'CASCADE'
+});
+
+Comment.belongsTo(User, {
+  foreignKey: 'user_id'
 });
 
 Post.hasMany(Comment, {
@@ -17,24 +25,8 @@ Post.hasMany(Comment, {
   onDelete: 'CASCADE'
 });
 
-// REF - W13
-// Product.belongsTo(Category, {
-//   foreignKey: 'category_id',
-// });
+Comment.belongsTo(Post, {
+  foreignKey: 'post_id'
+});
 
-// Category.hasMany(Product, {
-//   foreignKey: 'category_id',
-// });
-
-// Product.belongsToMany(Tag, {
-//   foreignKey: 'product_id',
-//   through: ProductTag
-// });
-
-// Tag.belongsToMany(Product, {
-//   foreignKey: 'tag_id',
-//   through: ProductTag
-// });
-
-// module.exports = { User, Post };
 module.exports = { User, Post, Comment};
