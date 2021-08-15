@@ -1,12 +1,8 @@
 // the purpose of this js is to receive comment posts and comment deletions.
 const newFormHandler = async (event) => {
-  const post_id = document.querySelector('#data-id');
+  const post_id = document.querySelector('#post-id').value;
   const title = document.querySelector('#comment-title').value.trim();
   const description = document.querySelector('#comment-desc').value.trim();
-
-  console.log("Title: ",title);
-  console.log("Description: ",description);
-  console.log("Post_id: ",post_id);
 
   if (title && description&& post_id) {
     const response = await fetch(`/api/comments`, {
@@ -16,9 +12,6 @@ const newFormHandler = async (event) => {
         'Content-Type': 'application/json',
       },
     });
-    console.log("--------------------------")
-    console.log(response);
-    console.log("--------------------------")
     if (response.ok) {
       document.location.replace(`/post/${post_id}`);
     } else {
