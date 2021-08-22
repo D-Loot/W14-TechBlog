@@ -1,42 +1,10 @@
-// W13 - E-Commerce
-
 const router = require('express').Router();
-const { Post } = require('../../models');
+const { Post} = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// ------------------------------------------------------------------
-router.get('/:id', async (req, res) => {
-  console.log("Comment by ID")
-  try {
-    const commentData = await Post.findByPk(req.params.id, {
-      include: [
-        {
-          model: User,
-          attributes: ['name'],
-        },
-        {
-          model: Comment,
-          attributes: ['title'],
-        },
-      ],
-    });
-console.log(commentData);
-
-    const comments = commentData.get({ plain: true });
-
-    res.render('post', {
-      ...comment,
-      logged_in: req.session.logged_in
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
-// ------------------------------------------------------------------
-
+// Used for insomnia
 router.get('/', async (req, res) => {
-  // find all products
+  // find all posts
   // be sure to include its associated Category and Tag data
   try {
     const postData = await Post.findAll();
@@ -78,5 +46,25 @@ router.delete('/:id', withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+// --------------------------------------------------------------
+
+router.put("/edit/:id", async (req, res) => {
+  try {
+    const newPost = await Post.update({
+      ...req.body
+    },
+    {
+      where:{
+        id:req.params.id,
+      }
+    });
+    res.status(200).json(newPost);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+// --------------------------------------------------------------
 
 module.exports = router;
