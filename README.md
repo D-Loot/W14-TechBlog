@@ -4,7 +4,7 @@
 
 The task for this project was to create a CMS-style tech blog from scratch. I followed the MVC format by using Handlebars.js to create the templating language and Sequelize as the ORM and express-session for authentication.
 
-The acceptance criteria are as follows below. I had a difficult time uploading everything to heroku, and most of the time when I made a request from myqdl, the database wasn't updated yet and required me to refresh the screen in order to display the correct information.
+The acceptance criteria are as follows below.
 
 ## Acceptance Criteria
 
